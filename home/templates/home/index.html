@@ -19,74 +19,41 @@
 <section class="services" id="services">
 
     <h2>Our Services</h2>
-
-    <div class="service-container">
-
-        <div class="service-card">
-    <div class="service-icon">✨</div>
-    <h3>Facial Treatments</h3>
-    <p>Relaxing skincare treatments for glowing, healthy skin.</p>
-
-    <p class="service-meta">30mins</p>
-    <p class="service-price">€35</p>
-
-    <a href="{% url 'bookings' %}" class="booking-btn">
-    Book Now
-</a>
-
-</div>
+    <div class="swiper services-swiper">
+    <div class="swiper-wrapper">
 
 
-        <div class="service-card">
-    <div class="service-icon">💆‍♀️</div>
-    <h3>Massage Therapy</h3>
-    <p>Professional massages to help you relax and recharge.</p>
+        {% for service in services %}
+        <div class="swiper-slide">
+            <div class="service-card">
 
-    <p class="service-meta">30mins</p>
-    <p class="service-price">€35</p>
+                {% if service.image %}
+                <div class="service-image">
+                    <img src="{{ service.image.url }}" alt="{{ service.name }}">
+                </div>
+                {% else %}
+                <div class="service-icon">✨</div>
+                {% endif %}
 
-    <a href="{% url 'bookings' %}" class="booking-btn">
-    Book Now
-</a>
+                <h3>{{ service.name }}</h3>
+                <p>{{ service.description }}</p>
 
-</div>
+                {% if service.duration %}
+                <p class="service-meta">{{ service.duration }}</p>
+                {% endif %}
 
+                <p class="service-price">€{{ service.price }}</p>
+                <a href="{% url 'bookings' %}" class="booking-btn">Book Now</a>
 
-       <div class="service-card">
-    <div class="service-icon">💅</div>
-    <h3>Nail Care</h3>
-    <p>Manicure and pedicure services with premium care.</p>
+            </div>
+        </div>
+        {% endfor %}
 
-    <p class="service-meta">30mins</p>
-    <p class="service-price">€35</p>
-
-    <a href="{% url 'bookings' %}" class="booking-btn">
-    Book Now
-</a>
-</div>
-
-<div class="service-card">
-    {% if service.image %}
-    <div class="service-image">
-        <img src="{{ service.image.url }}" alt="{{ service.name }}">
     </div>
-       {% endif %}
 
-    <h3>Hair Braiding</h3>
-
-
-    <p>
-        Professional protective braids and stylish hairstyles
-        for every occasion.
-    </p>
-
-
-    <p class="service-meta">90 mins</p>
-    <p class="service-price">€55</p>
-
-    <a href="{% url 'bookings' %}" class="booking-btn">
-        Book Now
-    </a>
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
+    <div class="swiper-pagination"></div>
 </div>
 
 </section>

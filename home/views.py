@@ -13,7 +13,9 @@ stripe.api_key = settings.STRIPE_SECRET_KEY
 
 
 def home(request):
-    return render(request, 'home/index.html')
+    services = Service.objects.all()
+    return render(request, "home/index.html", {
+       "services": services})
 
 
 @login_required

@@ -40,6 +40,7 @@ class Booking(models.Model):
 class Service(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField()
+    duration = models.CharField(max_length=30, blank=True)
     price = models.DecimalField(
         max_digits=6,
         decimal_places=2
