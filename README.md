@@ -114,6 +114,7 @@ Throughout the project, development evolved as new ideas and improvements emerge
 
 As the project progressed, I revisited and refined several features as my understanding of Django and user experience grew. This iterative approach helped me improve the overall consistency of the application while reinforcing the importance of testing, incremental development and version control.
 
+---
 
 ### Version Control
 
@@ -121,6 +122,7 @@ Git and GitHub were used throughout the project to manage development. Regular c
 
 Regular commits also provided clear milestones throughout development, making it easier to review progress and maintain a stable codebase as new features were introduced.
 
+---
 
 ### User Stories
 
@@ -151,6 +153,8 @@ The design allows authenticated users to book salon appointments, browse product
 
 ![Database ERD](documentation/images/glow-space-erd.png)
 
+---
+
 ### Database Models
 
 The application is built around six main database models. Each model has a specific responsibility and works together to provide the booking and e-commerce functionality of the website.
@@ -164,6 +168,8 @@ The application is built around six main database models. Each model has a speci
 | **Cart** | Represents one shopping cart linked to one registered user and groups the products selected before checkout. |
 | **CartItem** | Connects a product to a shopping cart and stores the quantity selected. It also calculates the subtotal for that item. |
 
+---
+
 ### Model Relationships
 
 - One user can have multiple bookings.
@@ -172,6 +178,190 @@ The application is built around six main database models. Each model has a speci
 - One product can appear in multiple cart items.
 - Each cart item belongs to one cart and references one product.
 - The selected service in the Booking model is stored as a predefined text choice rather than as a foreign key to the Service model.
+
+
+## Features
+
+Glow Space includes a range of features that support both salon appointment booking and online product purchasing.
+
+### User Registration and Authentication
+
+Users can create an account, log in and log out securely using Django's built-in authentication system.
+
+Authentication is required for:
+
+- Booking appointments.
+- Viewing personal appointments.
+- Editing appointments.
+- Cancelling appointments.
+
+Authentication is not required for:
+
+- Browsing products.
+- Accessing the shopping cart.
+- Completing a purchase.
+
+---
+
+### Responsive Navigation
+
+The navigation bar provides access to the main sections of the website, including:
+
+- Home.
+- Services.
+- Products.
+- Bookings.
+- Contact.
+- My Appointments.
+
+The navigation menu adapts for smaller screen sizes to improve usability on mobile and tablet devices.
+
+---
+
+### Salon Services Carousel
+
+Salon services are loaded dynamically from the database and displayed in a responsive Swiper carousel.
+
+Each service card includes:
+
+- Service name.
+- Description.
+- Duration, where provided.
+- Price.
+- Service image, where available.
+- A booking button.
+
+The carousel displays a different number of service cards depending on the screen size.
+
+---
+
+### Appointment Booking
+
+Authenticated users can submit appointment requests by entering:
+
+- Their name.
+- Email address.
+- Selected service.
+- Preferred date.
+- Preferred time.
+
+The booking system validates the submitted details and prevents:
+
+- Incomplete submissions.
+- Dates in the past.
+- Times outside opening hours.
+- Sunday bookings.
+- Duplicate bookings for the same date and time.
+
+Successful bookings are saved to the database and displayed in the user's appointment area.
+
+---
+
+### Appointment Management
+
+Users can view their own appointments after logging in.
+
+They can also:
+
+- Edit an existing appointment.
+- Update the service, date or time.
+- Cancel an appointment.
+- Receive success or error messages after an action.
+
+---
+
+### Product Catalogue
+
+Available beauty products are loaded from the database and displayed in a responsive product grid.
+
+Each product card includes:
+
+- Product image.
+- Product name.
+- Description.
+- Price.
+- A link to the product detail page.
+
+---
+
+### Product Detail Page
+
+Each product has a dedicated detail page where users can view more information before making a purchase.
+
+The page includes:
+
+- A larger product image.
+- Full product description.
+- Price.
+- Add to Cart button.
+- Buy Now button.
+
+---
+
+### Shopping Cart
+
+Authenticated users can add products to their personal shopping cart.
+
+The cart allows users to:
+
+- Increase item quantities.
+- Reduce item quantities.
+- Remove products.
+- View item subtotals.
+- View the total cart value.
+
+Each registered user has one shopping cart linked to their account.
+
+---
+
+### Stripe Checkout
+
+Glow Space uses Stripe Checkout to process test payments securely.
+
+Users can proceed from the cart to the Stripe-hosted checkout page. After a successful payment, the cart is cleared and a confirmation message is displayed.
+
+---
+
+### Django Administration
+
+The Django administration panel allows the site owner to manage:
+
+- Users.
+- Services.
+- Products.
+- Bookings.
+- Shopping carts.
+- Cart items.
+
+This gives the administrator control over the main content and data used by the application.
+
+---
+
+### User Feedback Messages
+
+Django messages are used throughout the application to provide clear feedback after actions such as:
+
+- Successful registration.
+- Successful appointment booking.
+- Appointment updates.
+- Appointment cancellation.
+- Adding products to the cart.
+- Successful payment.
+- Validation errors.
+
+---
+
+### Responsive Design
+
+The application is designed to work across:
+
+- Mobile phones.
+- Tablets.
+- Laptops.
+- Desktop screens.
+
+Responsive layouts are used for the navigation bar, service carousel, product grid, booking page, product details and authentication pages.
+
 
 
 
