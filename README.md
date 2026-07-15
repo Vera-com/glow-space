@@ -140,3 +140,27 @@ Regular commits also provided clear milestones throughout development, making it
 | As an administrator, I can manage services. | ✅ |
 | As an administrator, I can manage bookings. | ✅ |
 
+
+## Database Design
+
+Glow Space uses a relational PostgreSQL database managed through Django's ORM. The database has been designed to separate responsibilities across individual models while maintaining clear relationships between users, bookings, services, products and shopping carts.
+
+The design allows authenticated users to book salon appointments, browse products, manage shopping carts and complete purchases, while administrators can manage services, products and appointments through the Django administration panel.
+
+### Entity Relationship Diagram
+
+![Database ERD](documentation/erd.png)
+
+### Database Models
+
+The application is built around six main database models. Each model has a specific responsibility and works together to provide the booking and e-commerce functionality of the website.
+
+| Model | Purpose |
+|-------|---------|
+| **User** | Uses Django's built-in authentication system to manage user registration, login and account information. |
+| **Service** | Stores the salon services offered by Glow Space, including the service name, description, price and image displayed on the website. |
+| **Booking** | Stores appointment details submitted by authenticated users, including the selected service, preferred date and time, and customer contact information. |
+| **Product** | Stores beauty products available for purchase, including product name, description, price, image and availability status. |
+| **Cart** | Represents an individual shopping cart linked to a registered user and groups all selected products before checkout. |
+| **CartItem** | Stores each product added to a shopping cart along with its quantity, creating the relationship between the cart and individual products.
+
