@@ -428,6 +428,24 @@ The following Python packages were used to support the development, deployment a
 - **Stripe Checkout** – Processes secure online payments for customer purchases.
 
 
+## Testing
+
+Extensive testing was carried out throughout the development of Glow Space to ensure the application functioned correctly across its key features.
+
+Testing included:
+
+- Manual testing
+- User story testing
+- CRUD functionality testing
+- Authentication and authorisation testing
+- Responsive design testing
+- Browser compatibility testing
+- HTML, CSS, JavaScript and Python validation
+- Bug identification and resolution
+
+A full record of the testing process, validation results and bugs encountered can be found in the [TESTING.md](TESTING.md) document.
+
+
 ## Credits
 
 ### Content
