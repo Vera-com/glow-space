@@ -198,3 +198,40 @@ The application was tested using modern web browsers to ensure a consistent user
 | Mozilla Firefox | Pass |
 
 No significant browser-specific issues were identified during testing.
+
+
+## Bugs Encountered and Fixed
+
+The following issues were encountered during development and resolved before final deployment and testing.
+
+| Bug or Challenge | Cause | Resolution | Status |
+|---|---|---|:---:|
+| Services disappeared from the homepage after converting the section to dynamic database content. | The `home` view rendered `index.html` without passing the `Service` queryset to the template. | Updated the `home` view to retrieve all services and include them in the template context. | Fixed |
+| Hair Braiding image did not display in the service card. | The template attempted to reference `service.image` outside a valid service loop. | Rebuilt the services section using a `{% for service in services %}` loop and loaded images dynamically from the `Service` model. | Fixed |
+| Service template produced a `TemplateSyntaxError`. | An `{% if service.image %}` statement was missing its closing `{% endif %}` tag. | Added the missing closing template tag and retested the page. | Fixed |
+| Service cards became uneven and partially cut off in the original slider. | The custom JavaScript slider depended on fixed card widths and scroll distances that did not match the responsive layout. | Replaced the custom slider with a responsive Swiper carousel and removed obsolete slider CSS. | Fixed |
+| Service carousel arrows and buttons displayed inconsistently. | Old slider rules and duplicate service-card styles conflicted with Swiper styling. | Cleaned the services stylesheet, removed obsolete rules and scoped Swiper styles to `.services-swiper`. | Fixed |
+| Product images appeared cropped or excessively zoomed. | Product images used `object-fit: cover`, which cropped images with different proportions. | Changed the product image presentation to `object-fit: contain` and standardised the image area and card layout. | Fixed |
+| Product cards and action buttons were not consistently aligned. | Product descriptions had different lengths and the cards did not use a full flex-column layout. | Used Flexbox, equal card sizing and automatic button margins to align the cards and actions. | Fixed |
+| Buy Now originally included the existing cart total. | The Buy Now flow reused the cart checkout session. | Separated the Buy Now payment flow so that Stripe receives only the selected product while normal cart checkout continues to use the cart total. | Fixed |
+| Customers could select invalid appointment times or dates. | The original booking workflow lacked sufficient server-side validation. | Added validation for past dates, past times, Sundays, opening hours, incomplete fields and duplicate time slots. | Fixed |
+| Stripe redirected to a missing success template. | `checkout_success.html` had not yet been created. | Created the success template and connected it to the successful checkout redirect. | Fixed |
+
+### Evidence
+
+Screenshots of relevant testing and validation results will be added after the deployed application has been fully tested.
+
+<!-- Example:
+![Booking validation](documentation/images/testing/booking-validation.png)
+-->
+
+
+## Known Bugs
+
+Known bugs will be recorded here after the final deployed application has been tested.
+
+At the time of writing, the application is still undergoing deployment and final validation. Any remaining issues that cannot be resolved before submission will be documented, together with their impact and any planned future solution.
+
+| Known Issue | Impact | Planned Resolution |
+|---|---|---|
+| To be confirmed during deployed-site testing. | To be confirmed. | To be confirmed. |
