@@ -109,3 +109,56 @@ Manual testing was carried out throughout development to ensure that each featur
 | Successful Payment | Completed payment using Stripe test card | Payment successful and confirmation page displayed | Pass |
 | Cancel Payment | Cancelled payment on Stripe | User returned without completing the order | Pass |
 
+## Authentication and Authorisation Testing
+
+| Feature | Test Performed | Expected Result | Outcome |
+|---------|----------------|-----------------|---------|
+| Register | Created a new user account | User account created successfully | Pass |
+| Login | Logged in with valid credentials | User redirected to their account | Pass |
+| Invalid Login | Entered incorrect username/password | Error message displayed | Pass |
+| Logout | Clicked Logout | User logged out successfully | Pass |
+| Protected Pages | Attempted to access My Appointments without logging in | Redirected to Login page | Pass |
+| Booking Protection | Attempted to book an appointment without logging in | Redirected to Login page | Pass |
+| Edit Booking Protection | Attempted to edit another user's booking | Access denied | Pass |
+| Delete Booking Protection | Attempted to delete another user's booking | Access denied | Pass |
+
+
+## CRUD Functionality Testing
+
+### Create
+
+| Feature | Test Performed | Expected Result | Outcome |
+|---------|----------------|-----------------|---------|
+| Create Booking | Submitted a new appointment | Booking saved successfully | Pass |
+| Add Product (Admin) | Created a new product through Django Admin | Product added successfully | Pass |
+| Add Service (Admin) | Created a new service through Django Admin | Service added successfully | Pass |
+
+---
+
+### Read
+
+| Feature | Test Performed | Expected Result | Outcome |
+|---------|----------------|-----------------|---------|
+| View Services | Opened Services page | Services displayed correctly | Pass |
+| View Products | Opened Products page | Products displayed correctly | Pass |
+| View Appointments | Opened My Appointments | User appointments displayed | Pass |
+
+---
+
+### Update
+
+| Feature | Test Performed | Expected Result | Outcome |
+|---------|----------------|-----------------|---------|
+| Edit Booking | Updated booking details | Changes saved successfully | Pass |
+| Edit Product (Admin) | Updated product information | Product updated successfully | Pass |
+| Edit Service (Admin) | Updated service information | Service updated successfully | Pass |
+
+---
+
+### Delete
+
+| Feature | Test Performed | Expected Result | Outcome |
+|---------|----------------|-----------------|---------|
+| Delete Booking | Deleted an appointment | Booking removed successfully | Pass |
+| Delete Product (Admin) | Deleted a product | Product removed successfully | Pass |
+| Delete Service (Admin) | Deleted a service | Service removed successfully | Pass |
