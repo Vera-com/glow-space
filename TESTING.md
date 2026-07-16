@@ -64,6 +64,7 @@ Manual testing was carried out throughout development to ensure that each featur
 | Opening Hours Validation | Selected a time outside opening hours | Booking rejected with validation message | Pass |
 | Duplicate Booking | Attempted to book the same date and time twice | Duplicate booking prevented | Pass |
 
+---
 
 ### Appointment Management
 
@@ -73,3 +74,38 @@ Manual testing was carried out throughout development to ensure that each featur
 | Edit Booking | Updated the appointment date, time or service | Booking updated successfully | Pass |
 | Cancel Booking | Deleted an existing booking | Booking removed successfully and confirmation displayed | Pass |
 | Access Protection | Attempted to access another user's booking | Access denied | Pass |
+
+---
+
+### Product Catalogue
+
+| Feature | Test Performed | Expected Result | Outcome |
+|---------|----------------|-----------------|---------|
+| View Products | Opened the Products page | All available products displayed correctly | Pass |
+| Product Details | Selected a product | Product detail page opened with full information | Pass |
+| Product Images | Checked product images | Images displayed correctly without distortion | Pass |
+| Product Availability | Viewed available products | Available products displayed correctly | Pass |
+
+---
+
+### Shopping Cart
+
+| Feature | Test Performed | Expected Result | Outcome |
+|---------|----------------|-----------------|---------|
+| Add to Cart | Added a product to the cart | Product added successfully | Pass |
+| Increase Quantity | Increased product quantity | Quantity and subtotal updated correctly | Pass |
+| Decrease Quantity | Reduced product quantity | Quantity updated correctly | Pass |
+| Remove Product | Removed an item from the cart | Product removed successfully | Pass |
+| Cart Total | Added multiple products | Total price calculated correctly | Pass |
+| Empty Cart | Removed all products | Empty cart message displayed | Pass |
+
+---
+
+### Stripe Checkout
+
+| Feature | Test Performed | Expected Result | Outcome |
+|---------|----------------|-----------------|---------|
+| Checkout Page | Clicked Checkout from the cart | Redirected to Stripe Checkout | Pass |
+| Successful Payment | Completed payment using Stripe test card | Payment successful and confirmation page displayed | Pass |
+| Cancel Payment | Cancelled payment on Stripe | User returned without completing the order | Pass |
+
