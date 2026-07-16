@@ -2,7 +2,7 @@
 
 ![Responsive Mockup](documentation/responsive-mockup.png)
 
-Glow Space is a full-stack Django web application that combines an online salon booking system with a beauty product e-commerce store. Customers can browse beauty services, purchase products, book appointments, and manage their bookings through a secure account.
+Glow Space is a full-stack Django web application that combines an online salon booking system with a beauty product e-commerce store. Customers can browse salon services, purchase products, book appointments, and manage their bookings through a secure account.
 
 The application was developed as Milestone Project 4 for the Code Institute Diploma in Full Stack Software Development.
 
@@ -83,7 +83,7 @@ Users should be able to:
 - Log in securely.
 - Browse salon services.
 - View product information.
-- Purchase products.
+- Purchase beauty products securely.
 - Book appointments.
 - Manage appointments.
 - View previous bookings.
@@ -361,6 +361,105 @@ The application is designed to work across:
 - Desktop screens.
 
 Responsive layouts are used for the navigation bar, service carousel, product grid, booking page, product details and authentication pages.
+
+
+## Technologies Used
+
+### Languages
+
+The following programming languages were used throughout the development of this project:
+
+- HTML5
+- CSS3
+- JavaScript
+- Python
+
+### Frameworks and Libraries
+
+The following frameworks and libraries were used:
+
+- Django
+- Bootstrap 5
+- Swiper.js
+- Gunicorn
+- Stripe
+
+### Database
+
+- PostgreSQL (Production)
+- SQLite (Development)
+
+### Version Control
+
+- Git
+- GitHub
+
+### Deployment
+
+- Render
+- Gunicorn
+- WhiteNoise
+
+### Development Tools
+
+- Visual Studio Code
+- GitHub Desktop
+- Chrome Developer Tools
+- Draw.io (ER Diagram)
+- Favicon.io
+- Google Fonts
+
+### Django Packages
+
+The following Python packages were used to support the development, deployment and functionality of the application:
+
+- **asgiref** – Supports Django's asynchronous features.
+- **dj-database-url** – Parses the database URL for PostgreSQL deployment.
+- **Pillow** – Handles image uploads for products and services.
+- **psycopg2-binary** – PostgreSQL database adapter used in production.
+- **python-decouple** – Stores sensitive information such as secret keys and API credentials in environment variables.
+- **requests** – Handles HTTP requests to external services where required.
+- **WhiteNoise** – Serves static files efficiently in the deployed application.
+
+---
+
+### Payment Processing
+
+- **Stripe Checkout** – Processes secure online payments for customer purchases.
+
+
+## Credits
+
+### Content
+
+All written content was created specifically for this project.
+
+### Images
+
+Product and service images were created, edited or sourced from royalty-free platforms such as Unsplash, where applicable.
+
+### Code
+
+The project was developed using Django and follows the structure and best practices taught throughout the Code Institute Full Stack Software Development Diploma.
+
+Official documentation from Django, Bootstrap, Stripe and Swiper.js was consulted during development to better understand implementation details and recommended practices.
+
+Any external guidance was used for learning purposes only. All code was written, adapted and integrated specifically for this project.
+
+
+## Acknowledgements
+
+I would like to express my sincere appreciation to:
+
+- The Code Institute team and mentors for delivering useful webinars and guidance throughout the MS4 project.
+- The Code Institute tutors and support team for their assistance during development.
+- The Code Institute learning materials for providing the foundation for this project.
+- My family for their patience, encouragement and support throughout my studies.
+- Everyone who tested the application and provided valuable feedback that helped improve the user experience.
+
+
+
+
 
 
 
