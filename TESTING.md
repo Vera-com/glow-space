@@ -162,3 +162,39 @@ Manual testing was carried out throughout development to ensure that each featur
 | Delete Booking | Deleted an appointment | Booking removed successfully | Pass |
 | Delete Product (Admin) | Deleted a product | Product removed successfully | Pass |
 | Delete Service (Admin) | Deleted a service | Service removed successfully | Pass |
+
+
+## Responsive Design Testing
+
+The application was tested across multiple screen sizes to ensure that the layout remained responsive and user-friendly.
+
+| Device | Result |
+|---------|--------|
+| Mobile (up to 576px) | Layout displayed correctly and navigation collapsed into a mobile menu. |
+| Tablet (768px and above) | Content adjusted correctly with no layout issues. |
+| Laptop (992px and above) | All pages displayed as expected with consistent spacing and alignment. |
+| Desktop (1200px and above) | Full layout displayed correctly with responsive grids and navigation. |
+
+### Responsive Features Tested
+
+- Navigation bar
+- Services Swiper carousel
+- Product catalogue
+- Product detail page
+- Booking form
+- Shopping cart
+- Authentication pages
+
+All tested features responded correctly across the supported screen sizes.
+
+## Browser Compatibility Testing
+
+The application was tested using modern web browsers to ensure a consistent user experience.
+
+| Browser | Result |
+|---------|--------|
+| Google Chrome | Pass |
+| Microsoft Edge | Pass |
+| Mozilla Firefox | Pass |
+
+No significant browser-specific issues were identified during testing.
