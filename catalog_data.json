@@ -1,0 +1,208 @@
+[
+{
+  "model": "home.service",
+  "pk": 1,
+  "fields": {
+    "name": "Facial Treatments",
+    "description": "Deep cleansing facial for refreshed skin and all skin types.",
+    "duration": "30 mins",
+    "price": "55.00",
+    "image": "services/Facial_Treatments.jpg"
+  }
+},
+{
+  "model": "home.service",
+  "pk": 2,
+  "fields": {
+    "name": "Massage Therapy",
+    "description": "Relaxing body massage to reduce tension and stress.",
+    "duration": "45 mins",
+    "price": "75.00",
+    "image": "services/Massage_Therapy.jpg"
+  }
+},
+{
+  "model": "home.service",
+  "pk": 3,
+  "fields": {
+    "name": "Nail Care",
+    "description": "Professional manicure and pedicure nail treatment.",
+    "duration": "30 mins",
+    "price": "55.00",
+    "image": "services/Nail_Care.jpg"
+  }
+},
+{
+  "model": "home.service",
+  "pk": 4,
+  "fields": {
+    "name": "Hair Styling",
+    "description": "Exclusive wig installation, Wash, blow-dry, and styling service.",
+    "duration": "",
+    "price": "45.00",
+    "image": ""
+  }
+},
+{
+  "model": "home.service",
+  "pk": 5,
+  "fields": {
+    "name": "Makeup Session",
+    "description": "Professional makeup for special occasions.",
+    "duration": "",
+    "price": "60.00",
+    "image": ""
+  }
+},
+{
+  "model": "home.service",
+  "pk": 6,
+  "fields": {
+    "name": "Waxing",
+    "description": "Hair removal treatment for smooth skin.",
+    "duration": "",
+    "price": "30.00",
+    "image": ""
+  }
+},
+{
+  "model": "home.service",
+  "pk": 7,
+  "fields": {
+    "name": "Eyebrow Shaping",
+    "description": "Microblading, Henna, Eyebrow trimming and shaping service.",
+    "duration": "",
+    "price": "60.00",
+    "image": ""
+  }
+},
+{
+  "model": "home.service",
+  "pk": 8,
+  "fields": {
+    "name": "Body Scrub",
+    "description": "Exfoliating body treatment for smoother skin.",
+    "duration": "",
+    "price": "55.00",
+    "image": ""
+  }
+},
+{
+  "model": "home.service",
+  "pk": 9,
+  "fields": {
+    "name": "Bridal Beauty Package",
+    "description": "Complete bridal hair and makeup package.",
+    "duration": "",
+    "price": "120.00",
+    "image": ""
+  }
+},
+{
+  "model": "home.service",
+  "pk": 11,
+  "fields": {
+    "name": "Hair Braiding",
+    "description": "Stylish and protective hair braidings for every occasion.",
+    "duration": "120 mins",
+    "price": "55.00",
+    "image": "services/Hair_Braiding_DovjJ5S.jpeg"
+  }
+},
+{
+  "model": "home.product",
+  "pk": 1,
+  "fields": {
+    "name": "Shea Butter",
+    "description": "Natural moisturizing body and hair butter.",
+    "price": "15.99",
+    "image": "products/kaeme-P8Pv7kyxZTo-unsplash.jpg",
+    "available": true,
+    "created_on": "2026-06-24T15:19:44.488Z"
+  }
+},
+{
+  "model": "home.product",
+  "pk": 2,
+  "fields": {
+    "name": "Revitalising Hair Shampoo",
+    "description": "A gentle cleansing shampoo enriched with botanical extracts to remove build-up while helping to nourish the scalp. Leaves hair feeling refreshed, soft, and ready for your next hair care step.",
+    "price": "15.99",
+    "image": "products/15-in-1_Revitalising_Shampoo.jpeg",
+    "available": true,
+    "created_on": "2026-06-30T12:37:41.637Z"
+  }
+},
+{
+  "model": "home.product",
+  "pk": 3,
+  "fields": {
+    "name": "Extra Hydrating Conditioner",
+    "description": "A rich, moisture-boosting conditioner designed to soften, detangle,  helps reduce dryness and leaves hair smooth, silky, and easy to style.",
+    "price": "16.99",
+    "image": "products/15-in-1_Hydrating_Conditioner.jpeg",
+    "available": true,
+    "created_on": "2026-06-30T12:41:00.391Z"
+  }
+},
+{
+  "model": "home.product",
+  "pk": 4,
+  "fields": {
+    "name": "Coffee Hair Mask",
+    "description": "A deep conditioning treatment infused with coffee-inspired ingredients to help restore moisture and improve the appearance of dry, tired-looking hair. Ideal for weekly intensive care.",
+    "price": "17.99",
+    "image": "products/Coffee_Deep_Conditioning_Hair_Mask.jpeg",
+    "available": true,
+    "created_on": "2026-06-30T12:42:42.065Z"
+  }
+},
+{
+  "model": "home.product",
+  "pk": 5,
+  "fields": {
+    "name": "Hair Growth Oil",
+    "description": "Nourishing botanical oil that moisturises the scalp and helps maintain healthy-looking hair. Ideal for daily use, scalp massages, and protective hairstyles.",
+    "price": "18.99",
+    "image": "products/Botanical_Hair_Growth_Oil_2.jpeg",
+    "available": true,
+    "created_on": "2026-06-30T12:44:06.974Z"
+  }
+},
+{
+  "model": "home.product",
+  "pk": 6,
+  "fields": {
+    "name": "Intensive Hair Repair Butter",
+    "description": "An intensive conditioning butter designed to nourish dry and damaged hair. Helps improve softness, reduce breakage, and restore a healthy-looking finish.",
+    "price": "19.59",
+    "image": "products/Intensive_Hair_Repair_Butter.jpeg",
+    "available": true,
+    "created_on": "2026-06-30T12:47:28.799Z"
+  }
+},
+{
+  "model": "home.product",
+  "pk": 7,
+  "fields": {
+    "name": "Turmeric Glow Body Oil",
+    "description": "A lightweight body oil enriched with turmeric-inspired ingredients to deeply moisturise the skin while leaving it feeling soft, smooth, and naturally radiant.",
+    "price": "19.50",
+    "image": "products/Tumeric_Glow_Body_Oil.jpeg",
+    "available": true,
+    "created_on": "2026-06-30T12:52:12.331Z"
+  }
+},
+{
+  "model": "home.product",
+  "pk": 8,
+  "fields": {
+    "name": "Complete Hair Care Collection",
+    "description": "Our complete collection of premium hair care essentials, including shampoo, conditioner, treatment mask, nourishing oil, and repair butter. Designed to support a healthy hair care routine from cleansing to deep nourishment. A trial will convince you!",
+    "price": "59.99",
+    "image": "products/Complete_Hair_Care_Collection.jpeg",
+    "available": true,
+    "created_on": "2026-06-30T12:54:29.092Z"
+  }
+}
+]
