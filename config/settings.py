@@ -49,6 +49,12 @@ CSRF_TRUSTED_ORIGINS = [
     if origin
 ]
 
+AWS_ACCESS_KEY_ID = config("AWS_ACCESS_KEY_ID")
+AWS_SECRET_ACCESS_KEY = config("AWS_SECRET_ACCESS_KEY")
+AWS_STORAGE_BUCKET_NAME = config("AWS_STORAGE_BUCKET_NAME")
+AWS_S3_REGION_NAME = config("AWS_S3_REGION_NAME")
+
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -58,7 +64,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
+    'storages',
     'home',
 ]
 
@@ -162,8 +168,16 @@ STATIC_ROOT = BASE_DIR / "staticfiles"
 
 STORAGES = {
     "default": {
-        "BACKEND": "django.core.files.storage.FileSystemStorage",
+     "BACKEND": "storages.backends.s3.S3Storage",
+     "OPTIONS": {
+        "bucket_name": AWS_STORAGE_BUCKET_NAME,
+        "region_name": AWS_S3_REGION_NAME,
+        "default_acl": None,
+        "querystring_auth": False,
+        "file_overwrite": False,
+        },
     },
+
     "staticfiles": {
         "BACKEND": (
             "whitenoise.storage."
