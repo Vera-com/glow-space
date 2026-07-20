@@ -2,11 +2,16 @@
    General Styles
 -------------------- */
 
+
 html {
     scroll-padding-top: 80px;
+    width: 100;
+    overflow-x: hidden;
 }
 
 body {
+    width: 100%;
+    overflow-x: hidden;
    background-color: #f5f5f5;
    font-family: Arial, sans-serif;
    padding-top: 80px;
@@ -92,12 +97,12 @@ nav {
 /* Homepage hero section */
 .hero {
     width: 100%;
-    min-height: calc(100vh - 70px);
-    box-sizing: border-box;
+    min-height: calc(100vh - 80px);
     display: flex;
     align-items: center;
     padding: 4rem 2rem;
     position: relative;
+    margin-top: -40px;
 
     /* Hero background image with dark overlay */
     background-image:
