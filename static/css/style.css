@@ -1193,10 +1193,11 @@ This prevents one card becoming much taller than another.
     text-align: center;
     background:
         linear-gradient(
-            rgba(255, 248, 250, 0.92),
-            rgba(255, 248, 250, 0.92)
-        ),
-        url("../images/salon-background.jpg") center/cover no-repeat;
+            135deg,
+            #fff8fa 0%,
+            #f4edff 55%,
+            #eef8fb 100%
+        );
 }
 
 
