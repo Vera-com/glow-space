@@ -12,6 +12,9 @@
 <link rel="manifest" href="{% static 'images/site.webmanifest' %}">
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+<link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
     <title>Glow Space</title>
 </head>
@@ -69,8 +72,105 @@
         {% endblock %}
     </main>
 
-    <footer>
-    <p>&copy; 2026 Glow Space. All rights reserved.</p>
+    <footer class="site-footer">
+    <div class="footer-content">
+
+        <div class="footer-section footer-brand">
+            <h2>Glow Space</h2>
+
+            <p>
+                Professional beauty, wellness and self-care services,
+                appointments and products in one convenient space.
+            </p>
+        </div>
+
+        <div class="footer-section">
+            <h3>Quick Links</h3>
+
+            <ul class="footer-links">
+                <li>
+                    <a href="{% url 'home' %}">Home</a>
+                </li>
+
+                <li>
+                    <a href="{% url 'home' %}#services">Services</a>
+                </li>
+
+                <li>
+                    <a href="{% url 'products' %}">Products</a>
+                </li>
+
+                <li>
+                    <a href="{% url 'bookings' %}">Book Appointment</a>
+                </li>
+            </ul>
+        </div>
+
+
+        <div class="footer-section">
+            <h3>Contact</h3>
+
+            <p>
+                <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+                <a href="mailto:info@glowspace.com">
+                    info@glowspace.com
+                </a>
+            </p>
+
+            <p>
+                <i class="fa-solid fa-phone" aria-hidden="true"></i>
+                <a href="tel:+46727633818">
+                    +46 727 633 818
+                </a>
+            </p>
+        </div>
+
+        <div class="footer-section">
+            <h3>Follow Us</h3>
+
+            <div class="social-links">
+                <!-- Facebook -->
+<a href="https://www.facebook.com"
+   target="_blank"
+   rel="noopener noreferrer"
+   aria-label="Visit Facebook">
+    <i class="fab fa-facebook-f"></i>
+</a>
+
+
+<!-- Instagram -->
+<a href="https://www.instagram.com"
+   target="_blank"
+   rel="noopener noreferrer"
+   aria-label="Visit Instagram">
+    <i class="fab fa-instagram"></i>
+</a>
+
+
+<!-- X (Twitter) -->
+<a href="https://x.com"
+   target="_blank"
+   rel="noopener noreferrer"
+   aria-label="Visit X">
+    <i class="fab fa-x-twitter"></i>
+</a>
+
+
+<!-- TikTok -->
+<a href="https://www.tiktok.com"
+   target="_blank"
+   rel="noopener noreferrer"
+   aria-label="Visit TikTok">
+    <i class="fab fa-tiktok"></i>
+</a>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="footer-bottom">
+        <p>&copy; 2026 Glow Space. All rights reserved.</p>
+    </div>
 </footer>
 
 {% load static %}
