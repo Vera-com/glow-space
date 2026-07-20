@@ -1,20 +1,46 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block content %}
 
 <section class="hero">
-
     <div class="hero-content">
-        <h1>Glow Space</h1>
 
-        <p>
-            Beauty, wellness, and self-care bookings made simple.
+        <p class="hero-welcome">
+            Welcome to Glow Space
         </p>
 
-        <a href="{% url 'bookings' %}" class="hero-btn">Book Appointment</a>
-    </div>
+        <h1>
+            Beauty, Wellness and Self-Care in One Place
+        </h1>
 
+        <p class="hero-description">
+            Discover professional hair and skincare services, book your
+            appointments online, and shop carefully selected beauty products
+            designed to help you look and feel your best.
+        </p>
+
+        <div class="hero-actions">
+
+            <a href="{% url 'bookings' %}"
+               class="hero-btn hero-btn-primary">
+                Book Appointment
+            </a>
+
+            <a href="#services"
+               class="hero-btn hero-btn-secondary">
+                Explore Services
+            </a>
+
+            <a href="{% url 'products' %}"
+               class="hero-btn hero-btn-outline">
+                Shop Products
+            </a>
+
+        </div>
+    </div>
 </section>
+
 
 <section class="services" id="services">
 

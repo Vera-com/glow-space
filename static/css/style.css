@@ -14,7 +14,8 @@ body {
 }
 
 main {
-   padding: 2rem;
+   padding: 0;
+   margin: 0;
 }
 
 h1 {
@@ -88,44 +89,124 @@ nav {
    Hero Section
 -------------------- */
 
+/* Homepage hero section */
 .hero {
-   min-height: 80vh;
-   display: flex;
-   align-items: center;
-   justify-content: center;
-   text-align: center;
-   padding: 2rem;
+    width: 100%;
+    min-height: calc(100vh - 70px);
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    padding: 4rem 2rem;
+    position: relative;
+
+    /* Hero background image with dark overlay */
+    background-image:
+        linear-gradient(
+            rgba(0, 0, 0, 0.48),
+            rgba(0, 0, 0, 0.48)
+        ),
+        url("../images/glow-space-hero.png");
+
+    background-size: cover;
+    background-position: center right;
+    background-repeat: no-repeat;
+
+    color: #ffffff;
 }
 
-.hero-content h1 {
-   font-size: 4rem;
-   margin-bottom: 1rem;
-   color: #7c3aed;
+/* Limits the width of the text so it remains readable */
+.hero-content {
+    width: 100%;
+    max-width: 680px;
+    z-index: 2;
+    transform: translateY(-25px);
 }
 
-.hero-content p {
-   font-size: 1.2rem;
-   margin-bottom: 2rem;
-   color: #4b5563;
+.hero-welcome {
+    margin-bottom: 0.75rem;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.12rem;
+    text-transform: uppercase;
 }
 
+.hero h1 {
+    margin-bottom: 1.25rem;
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    line-height: 1.1;
+    color: #ffffff;
+    text-shadow: 0 4px 12px rgba(0, 0, 0, .45);
+}
 
-/* --------------------
-   Hero Button
--------------------- */
+.hero-description {
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+    line-height: 1.65;
+    max-width: 600px;
+}
 
+/* Holds the three CTA buttons */
+.hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+/* Shared CTA button styles */
 .hero-btn {
-   background-color: #7c3aed;
-   color: white;
-   padding: 1rem 2rem;
-   border-radius: 8px;
-   text-decoration: none;
-   font-weight: bold;
-   transition: 0.3s ease;
+    display: inline-block;
+    padding: 0.9rem 1.5rem;
+    border: 2px solid transparent;
+    border-radius: 6px;
+    font-weight: 600;
+    text-decoration: none;
+    transition:
+        background-color 0.3s ease,
+        color 0.3s ease,
+        border-color 0.3s ease,
+        transform 0.3s ease;
 }
 
-.hero-btn:hover {
-   background-color: #5b21b6;
+.hero-btn:hover,
+.hero-btn:focus {
+    transform: translateY(-2px);
+}
+
+/* Main CTA */
+.hero-btn-primary {
+    background-color: #1f5f78;
+    color: #ffffff;
+}
+
+.hero-btn-primary:hover,
+.hero-btn-primary:focus {
+    background-color: #17495d;
+    color: #ffffff;
+}
+
+/* Services CTA */
+.hero-btn-secondary {
+    background-color: #ffffff;
+    color: #1f5f78;
+}
+
+.hero-btn-secondary:hover,
+.hero-btn-secondary:focus {
+    background-color: #eeeeee;
+    color: #17495d;
+}
+
+/* Product CTA */
+.hero-btn-outline {
+    border-color: #ffffff;
+    background-color: transparent;
+    color: #ffffff;
+}
+
+.hero-btn-outline:hover,
+.hero-btn-outline:focus {
+    background-color: #ffffff;
+    color: #1f5f78;
 }
 
 
@@ -899,6 +980,30 @@ footer {
         display: flex;
     }
 
+    .hero {
+        min-height: 550px;
+        padding: 4rem 1.5rem;
+        background-position: 70% center;
+    }
+
+    .hero-content {
+        max-width: 100%;
+    }
+
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+
+    .hero-actions {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .hero-btn {
+        width: 100%;
+        max-width: 250px;
+        text-align: center;
+    }
 
     .booking-page {
         flex-direction: column;
