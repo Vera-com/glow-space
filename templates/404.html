@@ -1,0 +1,43 @@
+
+
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block title %}
+Page Not Found | Glow Space
+{% endblock %}
+
+
+{% block content %}
+<section class="error-page">
+    <div class="error-container">
+
+
+        <div class="error-code">404</div>
+
+
+        <h1 class="error-title">Oops! This page has lost its glow.</h1>
+
+
+        <p class="error-message">
+            The page you are looking for may have been moved, deleted,
+            or the address may have been entered incorrectly.
+        </p>
+
+
+        <div class="error-actions">
+            <a href="{% url 'home' %}" class="error-btn primary-btn">
+                Return Home
+            </a>
+
+
+            <a href="{% url 'services' %}" class="error-btn secondary-btn">
+                View Our Services
+            </a>
+        </div>
+
+
+    </div>
+</section>
+{% endblock %}
