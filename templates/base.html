@@ -37,6 +37,10 @@
 <a href="{% url 'home' %}#services">Services</a>
    </li>
 
+   <li>
+<a href="{% url 'home' %}#about">About</a>
+   </li>
+
 <li>
     <a href="{% url 'products' %}" class="{% if request.resolver_match.url_name == 'products' %}active{% endif %}">Products</a>
 </li>

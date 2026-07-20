@@ -14,13 +14,13 @@ if (menuToggle && navLinks) {
     });
 }
 
+
 // Sunday booking validation
 const dateInput = document.getElementById("date");
 const dateError = document.getElementById("date-error");
 
-if (dateInput) {
+if (dateInput && dateError) {
     dateInput.addEventListener("change", function () {
-
         const selectedDate = new Date(this.value);
 
         if (selectedDate.getDay() === 0) {
@@ -29,33 +29,39 @@ if (dateInput) {
         } else {
             dateError.style.display = "none";
         }
-
     });
 }
 
-const servicesSwiper = new Swiper(".services-swiper", {
-    slidesPerView: 1,
-    spaceBetween: 24,
-    loop: true,
 
+// Services carousel
+const servicesSwiperElement = document.querySelector(".services-swiper");
 
-    pagination: {
-        el: ".swiper-pagination",
-        clickable: true,
-    },
+if (servicesSwiperElement) {
+    new Swiper(".services-swiper", {
+        slidesPerView: 1,
+        spaceBetween: 24,
+        loop: false,
+        watchOverflow: true,
 
-    navigation: {
-        nextEl: ".swiper-button-next",
-        prevEl: ".swiper-button-prev",
-    },
-
-
-    breakpoints: {
-        768: {
-            slidesPerView: 2,
+        pagination: {
+            el: ".services-swiper .swiper-pagination",
+            clickable: true,
         },
-        1024: {
-            slidesPerView: 3,
+
+        navigation: {
+            nextEl: ".services-swiper .swiper-button-next",
+            prevEl: ".services-swiper .swiper-button-prev",
         },
-    },
-});
+
+        breakpoints: {
+            768: {
+                slidesPerView: 2,
+                spaceBetween: 24,
+            },
+            1024: {
+                slidesPerView: 3,
+                spaceBetween: 28,
+            },
+        },
+    });
+}

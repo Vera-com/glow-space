@@ -44,55 +44,124 @@
 
 <section class="services" id="services">
 
-    <h2>Our Services</h2>
-    <div class="swiper services-swiper">
-    <div class="swiper-wrapper">
+
+    <div class="section-heading">
+        <p class="section-eyebrow">Glow Space Treatments</p>
 
 
-        {% for service in services %}
-        <div class="swiper-slide">
-            <div class="service-card">
+        <h2>Professional Care, Tailored to You</h2>
 
-                {% if service.image %}
-                <div class="service-image">
-                    <img src="{{ service.image.url }}" alt="{{ service.name }}">
-                </div>
-                {% else %}
-                <div class="service-icon">✨</div>
-                {% endif %}
 
-                <h3>{{ service.name }}</h3>
-                <p>{{ service.description }}</p>
-
-                {% if service.duration %}
-                <p class="service-meta">{{ service.duration }}</p>
-                {% endif %}
-
-                <p class="service-price">€{{ service.price }}</p>
-                <a href="{% url 'bookings' %}" class="booking-btn">Book Now</a>
-
-            </div>
-        </div>
-        {% endfor %}
-
+        <p class="section-introduction">
+            Explore our carefully selected beauty and wellness treatments,
+            designed to help you relax, refresh and feel your best.
+        </p>
     </div>
 
-    <div class="swiper-button-prev"></div>
-    <div class="swiper-button-next"></div>
-    <div class="swiper-pagination"></div>
-</div>
+
+    <div class="swiper services-swiper">
+        <div class="swiper-wrapper">
+
+
+            {% for service in services %}
+            <div class="swiper-slide">
+
+
+                <article class="service-card">
+
+
+                    <div class="service-media">
+                        {% if service.image %}
+                            <img
+                                src="{{ service.image.url }}"
+                                alt="{{ service.name }} at Glow Space"
+                                class="service-card-image"
+                            >
+                        {% else %}
+                            <div class="service-image-placeholder">
+                                <span aria-hidden="true">✨</span>
+                            </div>
+                        {% endif %}
+
+
+                        <span class="service-duration-badge">
+                            {{ service.duration|default:"Beauty treatment" }}
+                        </span>
+                    </div>
+
+
+                    <div class="service-card-content">
+
+
+                        <p class="service-category">
+                            Beauty &amp; Wellness
+                        </p>
+
+
+                        <h3>{{ service.name }}</h3>
+
+
+                        <p class="service-description">
+                            {{ service.description }}
+                        </p>
+
+
+                        <div class="service-card-footer">
+                            <p class="service-price">
+                                €{{ service.price }}
+                            </p>
+
+
+                            <a
+                                href="{% url 'bookings' %}"
+                                class="booking-btn service-booking-btn"
+                                aria-label="Book {{ service.name }}"
+                            >
+                                Book Appointment
+                            </a>
+                        </div>
+
+
+                    </div>
+
+
+                </article>
+
+            </div>
+            {% endfor %}
+
+        </div>
+
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-pagination"></div>
+    </div>
 
 </section>
 
-<section class="bookings">
-    <h2>Book Your Appointment</h2>
 
-    <p>
-        Schedule your beauty and wellness services with ease.
-    </p>
+<section class="about-preview" id="about">
+   <div class="about-preview-wrapper">
+       <div class="about-preview-image">
+           <img src="{% static 'images/about-us.png' %}" alt="Glow Space beauty professional in a modern salon">
+       </div>
 
-    <a href="{% url 'bookings' %}" class="booking-btn">Book Now</a>
+       <div class="about-preview-content">
+           <p class="section-eyebrow">About Glow Space</p>
+           <h2>Beauty, care and confidence in one welcoming space</h2>
+
+           <p>
+               At Glow Space, we provide personalised beauty and wellness services
+               designed to help every client feel refreshed, confident and cared for.
+               From hair and skincare to self-care treatments and beauty products,
+               our goal is to create a relaxing experience that brings out your natural glow.
+           </p>
+
+           <a href="{% url 'bookings' %}" class="booking-btn">Book Your Visit</a>
+       </div>
+   </div>
 </section>
+
 
 <section id="contact" class="contact">
     <h2>Contact Us</h2>
