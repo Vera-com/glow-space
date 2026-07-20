@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}
+Server Error | Glow Space
+{% endblock %}
+
+
+{% block content %}
+<section class="error-page">
+    <div class="error-container">
+        <div class="error-code">500</div>
+
+
+        <h1 class="error-title">
+            Something interrupted the glow.
+        </h1>
+
+
+        <p class="error-message">
+            We are sorry, but something went wrong on our side.
+            Please try again shortly or return to the homepage.
+        </p>
+
+
+        <div class="error-actions">
+            <a href="{% url 'home' %}" class="error-btn primary-btn">
+                Return Home
+            </a>
+        </div>
+    </div>
+</section>
+{% endblock %}
