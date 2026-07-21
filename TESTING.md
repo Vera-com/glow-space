@@ -109,6 +109,79 @@ Manual testing was carried out throughout development to ensure that each featur
 | Successful Payment | Completed payment using Stripe test card | Payment successful and confirmation page displayed | Pass |
 | Cancel Payment | Cancelled payment on Stripe | User returned without completing the order | Pass |
 
+
+
+## Responsive Design Testing
+
+Responsive testing was carried out to check that Glow Space remained readable and usable across mobile, tablet and desktop screen sizes.
+
+The tests were completed using Chrome Developer Tools and, where available, physical devices. Each main page was checked for horizontal scrolling, overlapping content, readable text, correctly sized images and usable buttons and forms.
+
+### Screen Sizes Tested
+
+| Device Type | Example Width | Testing Method |
+|---|---:|---|
+| Mobile | 375px | Chrome Developer Tools |
+| Large Mobile | 576px | Chrome Developer Tools |
+| Tablet | 768px | Chrome Developer Tools |
+| Laptop | 1024px | Browser and Chrome Developer Tools |
+| Desktop | 1440px | Chrome responsive mode |
+
+### Responsive Page Testing
+
+| Page or Feature | Mobile Result | Tablet Result | Desktop Result | Outcome |
+|---|---|---|---|:---:|
+| Navigation | Navigation remained accessible and links could be used | Navigation displayed correctly | Full navigation displayed correctly | Pass |
+| Homepage hero | Text, image and call-to-action buttons remained readable | Content adjusted to the available space | Full hero layout displayed correctly | Pass |
+| Services carousel | Service cards adjusted to the smaller viewport and remained usable | Cards displayed without overlap | Three service cards displayed within the carousel | Pass |
+| About section | Image and text rearranged to fit the smaller screen | Content remained readable and aligned | Image and text displayed side by side | Pass |
+| Product catalogue | Product cards adjusted to the available width | Product grid remained aligned | Multiple product cards displayed in rows | Pass |
+| Product detail page | Product information remained readable without horizontal overflow | Image and information adjusted correctly | Product image and details displayed clearly | Pass |
+| Booking form | Form fields remained accessible and usable | Form adjusted to the tablet width | Image and booking form displayed side by side | Pass |
+| My Appointments | Appointment cards fitted within the viewport | Appointment details remained readable | Appointment information displayed with consistent spacing | Pass |
+| Shopping cart | Cart items, quantity controls and totals remained accessible | Cart layout adjusted correctly | Full cart layout displayed correctly | Pass |
+| Login and registration forms | Form fields and buttons fitted within the screen | Forms remained centred and readable | Forms displayed correctly with suitable spacing | Pass |
+| Error pages | Error message and action buttons remained visible | Error content remained centred | Full custom error layout displayed correctly | Pass |
+| Footer | Footer content rearranged without overlapping | Footer sections remained readable | Footer columns displayed across the page | Pass |
+
+### Items Checked at Each Screen Size
+
+The following points were checked during responsive testing:
+
+- No unexpected horizontal scrolling.
+- Text remained readable without being cut off.
+- Images remained within their containers.
+- Buttons and links remained visible and usable.
+- Forms fitted within the viewport.
+- Service and product cards remained aligned.
+- Navigation links remained accessible.
+- The footer did not overlap the main content.
+- Success and error messages remained visible.
+- The booking and shopping workflows could still be completed.
+
+### Responsive Testing Evidence
+
+The following screenshots show the application at different viewport sizes.
+
+#### Mobile
+
+![Homepage displayed on a mobile screen](documentation/images/testing/responsive-home-mobile.png)
+
+![Booking page displayed on a mobile screen](documentation/images/testing/responsive-booking-mobile.png)
+
+#### Tablet
+
+![Homepage displayed on a tablet screen](documentation/images/testing/responsive-home-tablet.png)
+
+![Products page displayed on a tablet screen](documentation/images/testing/responsive-products-tablet.png)
+
+#### Desktop
+
+![Homepage displayed on a desktop screen](documentation/images/testing/responsive-home-desktop.png)
+
+![Services section displayed on a desktop screen](documentation/images/testing/responsive-services-desktop.png)
+
+
 ## Authentication and Authorisation Testing
 
 | Feature | Test Performed | Expected Result | Outcome |
@@ -121,6 +194,53 @@ Manual testing was carried out throughout development to ensure that each featur
 | Booking Protection | Attempted to book an appointment without logging in | Redirected to Login page | Pass |
 | Edit Booking Protection | Attempted to edit another user's booking | Access denied | Pass |
 | Delete Booking Protection | Attempted to delete another user's booking | Access denied | Pass |
+
+
+
+
+## User Story Testing
+
+The user stories created during the planning stage were tested against the completed application to confirm that the main goals of the project were achieved.
+
+### First-Time Visitor Goals
+
+| User Story | How It Was Met | Outcome |
+|---|---|:---:|
+| As a first-time visitor, I want to understand what Glow Space offers so that I can decide whether the services are suitable for me. | The homepage contains a clear hero section introducing Glow Space, with links to the services, products and booking pages. | Pass |
+| As a visitor, I want to browse the available beauty and wellness services. | The services section displays the service name, description, price, duration and image. Users can move through the services using the carousel controls. | Pass |
+| As a visitor, I want to learn more about Glow Space. | The About section explains the purpose of the business and the experience Glow Space aims to provide. | Pass |
+| As a visitor, I want to view the available beauty products. | The Products page displays all available products with their images, names, prices and short descriptions. | Pass |
+| As a visitor, I want to view further information about a product before purchasing it. | Selecting View Product opens an individual product detail page with the full product information. | Pass |
+| As a visitor, I want to find the salon's contact details easily. | The Contact section and footer display the email address, telephone number and social-media links. | Pass |
+| As a visitor, I want to create an account so that I can make and manage appointments. | A registration form is available, and valid registration creates an account and logs the user in. | Pass |
+
+### Registered User Goals
+
+| User Story | How It Was Met | Outcome |
+|---|---|:---:|
+| As a registered user, I want to log in securely so that I can access my account features. | The login form checks the user's credentials and displays an error when invalid details are entered. | Pass |
+| As a registered user, I want to book a beauty or wellness service. | The booking form allows a logged-in user to select a service, date and time. Successful bookings are saved to the user's account. | Pass |
+| As a registered user, I want my account details to be connected to my booking. | The booking is linked to the authenticated user, and the user's name is automatically added to the booking form. | Pass |
+| As a registered user, I want invalid appointment dates and times to be prevented. | The booking form prevents past bookings, Sunday bookings, times outside opening hours and duplicate time slots. | Pass |
+| As a registered user, I want to see my appointments in one place. | The My Appointments page displays only the appointments belonging to the logged-in user. | Pass |
+| As a registered user, I want to update an appointment if my plans change. | The Edit button opens the appointment form and allows valid booking information to be updated. | Pass |
+| As a registered user, I want to cancel an appointment that I no longer need. | The Delete button opens a confirmation page before permanently removing the appointment. | Pass |
+| As a registered user, I want my appointments protected from other users. | Appointment edit and delete queries include both the booking ID and the authenticated user. Another user cannot access or modify the booking. | Pass |
+| As a registered user, I want to add products to a shopping cart. | Products can be added to a cart connected to the logged-in user. | Pass |
+| As a registered user, I want to change product quantities in my cart. | The cart provides controls to increase, reduce or remove an item, and the subtotal and total update correctly. | Pass |
+| As a registered user, I want to purchase a product securely. | The user can continue from the cart to the Stripe-hosted checkout page and complete a test payment. | Pass |
+| As a registered user, I want confirmation that my payment was successful. | After successful payment, the user is redirected to a confirmation page and the cart is cleared. | Pass |
+| As a registered user, I want to log out when I have finished using the application. | The Logout link ends the authenticated session and returns the navigation to its logged-out state. | Pass |
+
+### Site Owner Goals
+
+| User Story | How It Was Met | Outcome |
+|---|---|:---:|
+| As the site owner, I want to add and manage services without changing the source code. | Services can be created, viewed, updated and deleted through Django Admin. | Pass |
+| As the site owner, I want to manage products through the administration area. | Products can be added, edited, marked as available or unavailable and deleted through Django Admin. | Pass |
+| As the site owner, I want uploaded product and service images to remain available on the deployed site. | Uploaded media files are stored using the configured cloud media storage service. | Pass |
+| As the site owner, I want customer bookings to be linked to user accounts. | Each booking contains a relationship to the authenticated Django user. | Pass |
+| As the site owner, I want the deployed application data to remain persistent. | The deployed application uses a PostgreSQL database provided through Neon. | Pass |
 
 
 ## CRUD Functionality Testing
@@ -187,6 +307,84 @@ The application was tested across multiple screen sizes to ensure that the layou
 
 All tested features responded correctly across the supported screen sizes.
 
+
+## Authentication and Authorisation Testing
+
+Authentication and authorisation were tested to make sure users could create an account, log in and log out correctly. Protected pages were also tested to confirm that only logged-in users could access booking, appointment and shopping cart features.
+
+### Authentication Testing
+
+| Test | Expected Result | Actual Result | Outcome |
+|---|---|---|:---:|
+| Register with valid details | A new account should be created and the user should be logged in | The account was created successfully and the user was logged in | Pass |
+| Register with missing information | The form should not submit and validation messages should be displayed | The required fields were highlighted and the account was not created | Pass |
+| Register with an existing username | The user should be told that the username is already in use | An error message was displayed and registration was prevented | Pass |
+| Log in with valid details | The user should be logged in successfully | The user was logged in and could access protected pages | Pass |
+| Log in with incorrect details | Login should fail and an error message should appear | The login failed and an error message was displayed | Pass |
+| Log out | The user's session should end | The user was logged out and the public navigation links were displayed | Pass |
+
+### Authorisation Testing
+
+| Test | Expected Result | Actual Result | Outcome |
+|---|---|---|:---:|
+| Open the Bookings page while logged out | The user should be redirected to the login page | The login page was displayed with the Bookings page included in the `next` URL | Pass |
+| Open My Appointments while logged out | The user should be redirected to the login page | The user was redirected to login | Pass |
+| Open the cart while logged out | The user should be redirected to the login page | The user was redirected to login | Pass |
+| View appointments after logging in | Only appointments belonging to the logged-in user should be displayed | Only the current user's appointments were shown | Pass |
+| Edit another user's appointment | Access should be prevented | Django returned a 404 response because the appointment did not belong to the logged-in user | Pass |
+| Delete another user's appointment | Access should be prevented | Django returned a 404 response because the appointment did not belong to the logged-in user | Pass |
+| Complete a booking while logged in | The booking should be linked to the current user | The booking was saved under the logged-in user's account | Pass |
+
+The appointment edit and delete views use both the appointment ID and the logged-in user when retrieving a booking. This prevents one user from changing or deleting another user's appointment.
+
+### Evidence
+
+The following screenshots show examples of the authentication and authorisation tests.
+
+![Invalid login message](documentation/images/testing/invalid-login.png)
+
+![Successful account registration](documentation/images/testing/account-created.png)
+
+![Protected booking page redirect](documentation/images/testing/login-required-booking.png)
+
+![User appointment ownership protection](documentation/images/testing/appointment-access-protection.png)
+
+
+## Stripe Checkout Testing
+
+Stripe was tested in test mode to confirm that users could move from the shopping cart to the Stripe-hosted checkout page and complete a test payment.
+
+No real card details or real payments were used during testing.
+
+| Test | Expected Result | Actual Result | Outcome |
+|---|---|---|:---:|
+| Open checkout with an item in the cart | The user should be redirected to Stripe Checkout | The Stripe-hosted checkout page opened successfully | Pass |
+| Check the payment amount | The Stripe total should match the cart total | The correct total was displayed in euros | Pass |
+| Complete payment with a valid Stripe test card | The payment should be accepted | Stripe accepted the test payment and redirected to the success page | Pass |
+| View payment confirmation | A clear success message should be displayed | The Payment Successful page was displayed | Pass |
+| Check the cart after successful payment | The purchased items should be removed from the cart | The cart was cleared after the successful checkout | Pass |
+| Cancel the Stripe payment | The user should return to the cart without completing payment | The user returned to the cart and the payment was not completed | Pass |
+| Use Buy Now on a product | Checkout should contain only the selected product | Stripe opened checkout for the selected product | Pass |
+| Attempt checkout while logged out | The user should be redirected to login | The login page was displayed | Pass |
+
+For the successful payment test, Stripe's standard test card was used:
+
+- Card number: `4242 4242 4242 4242`
+- Expiry date: Any future date
+- CVC: Any three digits
+- Postal code: Any valid postal code
+
+### Stripe Test Evidence
+
+![Shopping cart before checkout](documentation/images/testing/cart-before-checkout.png)
+
+![Stripe test checkout](documentation/images/testing/stripe-checkout.png)
+
+![Successful Stripe payment](documentation/images/testing/payment-successful.png)
+
+![Cart cleared after payment](documentation/images/testing/cart-after-payment.png)
+
+
 ## Browser Compatibility Testing
 
 The application was tested using modern web browsers to ensure a consistent user experience.
@@ -235,3 +433,27 @@ At the time of writing, the application is still undergoing deployment and final
 | Known Issue | Impact | Planned Resolution |
 |---|---|---|
 | To be confirmed during deployed-site testing. | To be confirmed. | To be confirmed. |
+
+
+
+
+### HTML Validation
+
+I tested the deployed site using the W3C Nu HTML Checker to make sure there were no HTML errors or warnings.
+
+The homepage, products page and registration page all passed successfully with no errors or warnings.
+
+The Services, About and Contact sections are all part of the homepage, so they were covered by the homepage validation rather than tested as separate pages.
+
+The Bookings and My Appointments pages require the user to be logged in. Since the validator cannot use my logged-in session, these pages may redirect to the login page. I therefore also checked these pages manually while logged in to make sure they displayed and worked correctly.
+
+| Page | Result |
+|---|---|
+| Homepage, including Services, About and Contact | Pass |
+| Products page | Pass |
+| Registration page | Pass |
+| Bookings page | Checked manually while logged in |
+| My Appointments page | Checked manually while logged in |
+
+
+![HTML validation result showing no errors or warnings](documentation/images/testing/html-validation-home.png)
