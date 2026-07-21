@@ -7,6 +7,7 @@ Glow Space is a full-stack Django web application that combines an online salon 
 The application was developed as Milestone Project 4 for the Code Institute Diploma in Full Stack Software Development.
 
 
+
 ## Live Project
 
 ### Live Website
@@ -20,6 +21,7 @@ The deployed application can be viewed here:
 The project source code is available here:
 
 [Glow Space GitHub Repository](https://github.com/Vera-com/glow-space)
+
 
 
 
