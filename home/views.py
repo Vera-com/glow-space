@@ -20,17 +20,24 @@ def home(request):
 
 @login_required
 def bookings(request):
+    # Use the authenticated account as the booking identity.
+    booking_name = (
+        request.user.get_full_name().strip()
+        or request.user.username
+    )
 
     if request.method == "POST":
-        name = request.POST.get("name", "").strip()
+        # The name is taken from the logged-in account,
+        # not from an editable form field.
+        name = booking_name
+
         email = request.POST.get("email", "").strip()
         service = request.POST.get("service")
         preferred_date = request.POST.get("preferred_date")
         preferred_time = request.POST.get("preferred_time")
 
         if (
-            not name
-            or not email
+            not email
             or not service
             or not preferred_date
             or not preferred_time
@@ -40,39 +47,59 @@ def bookings(request):
                 "Please complete all booking fields."
             )
             return redirect("bookings")
+
         if preferred_date < str(date.today()):
-            messages.error(request, "Please choose today or a future date.")
+            messages.error(
+                request,
+                "Please choose today or a future date."
+            )
             return redirect("bookings")
-        booking_datetime = datetime.strptime(
-            f"{preferred_date} {preferred_time}",
-            "%Y-%m-%d %H:%M")
+
+        try:
+            booking_datetime = datetime.strptime(
+                f"{preferred_date} {preferred_time}",
+                "%Y-%m-%d %H:%M"
+            )
+        except ValueError:
+            messages.error(
+                request,
+                "Please enter a valid appointment date and time."
+            )
+            return redirect("bookings")
 
         appointment_time = booking_datetime.time()
+
         if appointment_time.hour < 9 or appointment_time.hour >= 21:
             messages.error(
                 request,
-                "Appointments can only be booked between 09:00 and 21:00.")
+                "Appointments can only be booked between 09:00 and 21:00."
+            )
             return redirect("bookings")
 
         if booking_datetime < datetime.now():
-            messages.error(request, "Please choose a future date and time.")
-            return redirect("bookings")
-
-        if Booking.objects.filter(
-           preferred_date=preferred_date,
-           preferred_time=preferred_time
-           ).exists():
             messages.error(
-             request,
-             "This time slot is already booked. Please choose another time."
+                request,
+                "Please choose a future date and time."
             )
             return redirect("bookings")
 
         if booking_datetime.weekday() == 6:
             messages.error(
-             request,
-             "Sorry, we are closed on Sundays. Please choose another date."
-              )
+                request,
+                "Sorry, we are closed on Sundays. "
+                "Please choose another date."
+            )
+            return redirect("bookings")
+
+        if Booking.objects.filter(
+            preferred_date=preferred_date,
+            preferred_time=preferred_time
+        ).exists():
+            messages.error(
+                request,
+                "This time slot is already booked. "
+                "Please choose another time."
+            )
             return redirect("bookings")
 
         Booking.objects.create(
@@ -88,14 +115,20 @@ def bookings(request):
             request,
             "Your booking request has been submitted successfully."
         )
-
         return redirect("bookings")
+
     services = Service.objects.all()
 
-    return render(request, "home/bookings.html", {
-         "today": date.today().isoformat(),
-         "services": services
-         })
+    return render(
+        request,
+        "home/bookings.html",
+        {
+            "today": date.today().isoformat(),
+            "services": services,
+            "booking_name": booking_name,
+            "booking_email": request.user.email,
+        }
+    )
 
 
 @login_required
@@ -115,59 +148,137 @@ def appointments(request):
 
 @login_required
 def edit_appointment(request, booking_id):
-    booking = get_object_or_404(Booking, id=booking_id)
+    booking = get_object_or_404(
+        Booking,
+        id=booking_id,
+        user=request.user
+    )
 
     if request.method == "POST":
-        name = request.POST.get("name", "").strip()
         email = request.POST.get("email", "").strip()
         service = request.POST.get("service")
         preferred_date = request.POST.get("preferred_date")
         preferred_time = request.POST.get("preferred_time")
 
-        if not name or not email or not preferred_date or not preferred_time:
-            messages.error(request, "Please complete all appointment fields.")
-            return redirect("edit_appointment", booking_id=booking.id)
+        if (
+            not email
+            or not service
+            or not preferred_date
+            or not preferred_time
+        ):
+            messages.error(
+                request,
+                "Please complete all appointment fields."
+            )
+            return redirect(
+                "edit_appointment",
+                booking_id=booking.id
+            )
 
-        booking_datetime = datetime.strptime(
-            f"{preferred_date} {preferred_time}",
-            "%Y-%m-%d %H:%M"
-        )
+        try:
+            booking_datetime = datetime.strptime(
+                f"{preferred_date} {preferred_time}",
+                "%Y-%m-%d %H:%M"
+            )
+        except ValueError:
+            messages.error(
+                request,
+                "Please enter a valid appointment date and time."
+            )
+            return redirect(
+                "edit_appointment",
+                booking_id=booking.id
+            )
+
         appointment_time = booking_datetime.time()
+
         if appointment_time.hour < 9 or appointment_time.hour >= 21:
             messages.error(
-             request,
-             "Appointments can only be booked between 09:00 and 21:00.")
-            return redirect("edit_appointment", booking_id=booking.id)
+                request,
+                "Appointments can only be booked between 09:00 and 21:00."
+            )
+            return redirect(
+                "edit_appointment",
+                booking_id=booking.id
+            )
 
         if booking_datetime <= datetime.now():
-            messages.error(request, "Please choose a future date and time.")
-            return redirect("edit_appointment", booking_id=booking.id)
+            messages.error(
+                request,
+                "Please choose a future date and time."
+            )
+            return redirect(
+                "edit_appointment",
+                booking_id=booking.id
+            )
 
-        booking.name = name
+        if booking_datetime.weekday() == 6:
+            messages.error(
+                request,
+                "Sorry, we are closed on Sundays. "
+                "Please choose another date."
+            )
+            return redirect(
+                "edit_appointment",
+                booking_id=booking.id
+            )
+
+        slot_taken = Booking.objects.filter(
+            preferred_date=preferred_date,
+            preferred_time=preferred_time
+        ).exclude(id=booking.id).exists()
+
+        if slot_taken:
+            messages.error(
+                request,
+                "This time slot is already booked. "
+                "Please choose another time."
+            )
+            return redirect(
+                "edit_appointment",
+                booking_id=booking.id
+            )
+
+        booking.name = (
+            request.user.get_full_name().strip()
+            or request.user.username
+        )
         booking.email = email
         booking.service = service
         booking.preferred_date = preferred_date
         booking.preferred_time = preferred_time
         booking.save()
 
-        messages.success(request, "Appointment updated successfully.")
+        messages.success(
+            request,
+            "Appointment updated successfully."
+        )
         return redirect("appointments")
 
     return render(
         request,
         "home/edit_appointment.html",
-        {"booking": booking, "today":
-         date.today().isoformat()}
-        )
+        {
+            "booking": booking,
+            "today": date.today().isoformat(),
+        }
+    )
 
 
 @login_required
 def delete_appointment(request, booking_id):
-    booking = get_object_or_404(Booking, id=booking_id)
+    booking = get_object_or_404(
+        Booking,
+        id=booking_id,
+        user=request.user
+    )
 
     if request.method == "POST":
         booking.delete()
-        messages.success(request, "Appointment deleted successfully.")
+        messages.success(
+            request,
+            "Appointment deleted successfully."
+        )
         return redirect("appointments")
 
     return render(
