@@ -11,42 +11,54 @@ The application was developed as Milestone Project 4 for the Code Institute Dipl
 
 ### Live Website
 
-*(Render deployment link will be added after deployment.)*
+The deployed application can be viewed here:
+
+[Glow Space Live Website](https://glow-space.onrender.com/)
 
 ### GitHub Repository
 
-*(GitHub repository link will be added here.)*
+The project source code is available here:
+
+[Glow Space GitHub Repository](https://github.com/Vera-com/glow-space)
+
 
 
 ## Table of Contents
 
 - [Project Overview](#project-overview)
-- [User Experience (UX)](#user-experience-ux)
+- [User Experience](#user-experience-ux)
   - [Project Goals](#project-goals)
   - [Target Audience](#target-audience)
   - [User Goals](#user-goals)
   - [Site Owner Goals](#site-owner-goals)
 - [Agile Development](#agile-development)
- - [Development Approach](#development-approach)
+  - [Development Approach](#development-approach)
   - [Version Control](#version-control)
   - [User Stories](#user-stories)
 - [Database Design](#database-design)
+  - [Entity Relationship Diagram](#entity-relationship-diagram)
+  - [Database Models](#database-models)
+  - [Model Relationships](#model-relationships)
 - [Features](#features)
 - [Technologies Used](#technologies-used)
+- [Security](#security)
 - [Testing](#testing)
 - [Bugs](#bugs)
+  - [Known Limitations](#known-limitations)
 - [Deployment](#deployment)
+- [Future Improvements](#future-improvements)
 - [Credits](#credits)
 - [Acknowledgements](#acknowledgements)
+
 
 
 ## Project Overview
 
 Glow Space is designed to provide customers with a modern and convenient online beauty salon experience. The application combines appointment booking with an integrated e-commerce platform, allowing users to browse salon services, purchase beauty products, and manage appointments from a single website.
 
-The project focuses on delivering a clean, responsive and user-friendly interface while demonstrating full-stack web development using Django, PostgreSQL, HTML, CSS, JavaScript and Bootstrap.
+The project focuses on delivering a clean, responsive and user-friendly interface while demonstrating full-stack web development using Django, PostgreSQL, HTML, CSS, JavaScript.
 
-The application was built with scalability in mind, allowing additional salon services, beauty products and future features to be incorporated with minimal changes to the existing structure.
+The application was built with scalability in mind, allowing additional salon services, beauty products and future features to be added as the business develops.
 
 
 ## User Experience (UX)
@@ -85,8 +97,8 @@ Users should be able to:
 - View product information.
 - Purchase beauty products securely.
 - Book appointments.
-- Manage appointments.
-- View previous bookings.
+- View their own appointments.
+- Edit or cancel their appointments.
 
 ---
 
@@ -97,9 +109,9 @@ The site owner should be able to:
 - Manage products.
 - Manage services.
 - Manage appointments.
-- Manage customer information.
-- Process customer orders.
-- Present a professional online presence.
+- Manage registered users.
+- View shopping carts and cart items through Django Admin.
+- Maintain a professional online presence for the salon.
 
 
 ## Agile Development
@@ -428,41 +440,267 @@ The following Python packages were used to support the development, deployment a
 - **Stripe Checkout** – Processes secure online payments for customer purchases.
 
 
+## Security
+
+Security was considered throughout development and deployment.
+
+The following measures are used:
+
+- Django's authentication system manages user passwords securely.
+- Passwords are not stored as plain text.
+- Booking, appointment, cart and checkout pages are protected with `@login_required`.
+- Appointment ownership is checked before editing or deleting a booking.
+- Stripe handles payment-card information on its hosted checkout page.
+- The Django secret key, database URL and Stripe keys are stored in environment variables.
+- The local `.env` file is included in `.gitignore`.
+- Sensitive credentials are not committed to GitHub.
+- Production `DEBUG` is controlled through an environment variable and is disabled on the deployed application.
+- CSRF protection is included on forms that submit data.
+
+
+
 ## Testing
 
-Extensive testing was carried out throughout the development of Glow Space to ensure the application functioned correctly across its key features.
+Testing was carried out throughout the development of Glow Space rather than being left until the end of the project. Features were tested after implementation and were retested after later changes to ensure that existing functionality continued to work.
 
-Testing included:
+Testing covered:
 
-- Manual testing
-- User story testing
-- CRUD functionality testing
-- Authentication and authorisation testing
-- Responsive design testing
-- Browser compatibility testing
-- HTML, CSS, JavaScript and Python validation
-- Bug identification and resolution
+- Manual feature testing.
+- User story testing.
+- CRUD functionality.
+- Authentication and authorisation.
+- Appointment ownership protection.
+- Form and server-side validation.
+- Stripe test payments.
+- Responsive design.
+- Browser compatibility.
+- HTML validation.
+- CSS validation.
+- Python code style using Flake8.
+- Django system and migration checks.
+- Lighthouse auditing.
+- Bug identification, correction and retesting.
 
-A full record of the testing process, validation results and bugs encountered can be found in the [TESTING.md](TESTING.md) document.
+A full record of the testing process, results, screenshots and resolved issues is available in the [TESTING.md](TESTING.md) file.
+
+
+## Bugs
+
+Several issues were found and corrected during development. These included:
+
+- Services disappearing when the database queryset was not passed to the homepage template.
+- A service image failing to display because it was referenced outside the service loop.
+- A missing Django template closing tag causing a `TemplateSyntaxError`.
+- Uneven service cards and unreliable carousel movement caused by the original custom slider.
+- Conflicting CSS rules affecting the Swiper navigation controls.
+- Product images appearing cropped because of `object-fit: cover`.
+- Product cards becoming uneven because of different description lengths.
+- Buy Now initially including products that were already in the shopping cart.
+- Appointment dates and times initially accepting invalid selections.
+- A missing Stripe success template.
+- The default Django 404 page appearing instead of the custom error page while `DEBUG` was enabled locally.
+- Users initially being able to enter a different name when creating a booking.
+- Edit and delete appointment views initially requiring additional ownership protection.
+
+These issues were corrected and retested. Full details are recorded in [TESTING.md](TESTING.md).
+
+### Known Limitations
+
+- Glow Space currently uses one main custom Django app for the closely related salon, booking, product and cart functionality. A future version could separate these features into individual reusable applications.
+- The selected booking service is stored as a predefined text choice rather than as a foreign key to the `Service` model.
+- The project currently records successful payments but does not store completed purchases in a dedicated Order model.
+- Cancelling Stripe Checkout returns the user to the cart but does not currently display a dedicated payment-cancellation message.
+- Service and product images can affect loading performance because several uploaded images are relatively large.
+- Lighthouse results may vary between runs because of network conditions, Render response times, browser activity and external resources.
+
+
+
+## Deployment
+
+Glow Space is deployed on Render. The production application uses PostgreSQL for database storage and AWS S3 for uploaded media files.
+
+- **Render** hosts the Django application.
+- **PostgreSQL** stores users, bookings, services, products, carts and cart items.
+- **AWS S3** stores uploaded product and service images.
+- **WhiteNoise** serves static files such as CSS, JavaScript and fixed website images.
+- **Gunicorn** runs the Django application in production.
+
+### Clone and Run the Project Locally
+
+1. Clone the GitHub repository:
+
+```bash
+git clone YOUR-GITHUB-REPOSITORY-URL
+```
+
+2. Open the project folder:
+
+```bash
+cd glow-space
+```
+
+3. Create a virtual environment:
+
+```bash
+python -m venv venv
+```
+
+4. Activate the virtual environment.
+
+On macOS or Linux:
+
+```bash
+source venv/bin/activate
+```
+
+On Windows:
+
+```bash
+venv\Scripts\activate
+```
+
+5. Install the required packages:
+
+```bash
+pip install -r requirements.txt
+```
+
+6. Create a `.env` file in the project root and add the required environment variables:
+
+```text
+SECRET_KEY=your-secret-key
+DEBUG=True
+STRIPE_PUBLIC_KEY=your-stripe-public-key
+STRIPE_SECRET_KEY=your-stripe-secret-key
+```
+
+When using PostgreSQL and AWS S3, also add:
+
+```text
+DATABASE_URL=your-postgresql-database-url
+AWS_ACCESS_KEY_ID=your-aws-access-key
+AWS_SECRET_ACCESS_KEY=your-aws-secret-access-key
+AWS_STORAGE_BUCKET_NAME=your-s3-bucket-name
+AWS_S3_REGION_NAME=your-aws-region
+```
+
+The `.env` file is included in `.gitignore` and must not be committed to GitHub.
+
+7. Apply the database migrations:
+
+```bash
+python manage.py migrate
+```
+
+8. Create an administrator account:
+
+```bash
+python manage.py createsuperuser
+```
+
+9. Run the local server:
+
+```bash
+python manage.py runserver
+```
+
+10. Open the application at:
+
+```text
+http://127.0.0.1:8000/
+```
+
+### AWS S3 Media Storage
+
+AWS S3 is used to store product and service images uploaded through Django Admin.
+
+PostgreSQL stores the image reference, while the actual image file is stored in the S3 bucket. This allows uploaded images to remain available after Render restarts or redeploys the application.
+
+The AWS credentials are stored securely as environment variables and are not committed to GitHub.
+
+### Render Deployment
+
+1. The completed project was pushed to GitHub.
+2. A new Web Service was created on Render.
+3. The GitHub repository was connected to the Render service.
+4. The following build command was used:
+
+```bash
+./build.sh
+```
+
+5. The following start command was used:
+
+```bash
+gunicorn config.wsgi
+```
+
+6. The required environment variables were added to Render:
+
+```text
+SECRET_KEY
+DEBUG
+DATABASE_URL
+STRIPE_PUBLIC_KEY
+STRIPE_SECRET_KEY
+AWS_ACCESS_KEY_ID
+AWS_SECRET_ACCESS_KEY
+AWS_STORAGE_BUCKET_NAME
+AWS_S3_REGION_NAME
+ALLOWED_HOSTS
+CSRF_TRUSTED_ORIGINS
+```
+
+7. Production debugging was disabled:
+
+```text
+DEBUG=False
+```
+
+8. The deployed domain was added to the allowed hosts and trusted origins:
+
+```text
+ALLOWED_HOSTS=glow-space.onrender.com
+CSRF_TRUSTED_ORIGINS=(https://glow-space.onrender.com)
+```
+
+9. After deployment, the live application was tested to confirm that:
+
+- Static files loaded correctly.
+- Uploaded images loaded from AWS S3.
+- PostgreSQL data remained available.
+- Registration and login worked.
+- Appointment management worked.
+- Shopping cart and Stripe test checkout worked.
+- Custom error pages displayed correctly.
 
 
 ## Credits
 
 ### Content
 
-All written content was created specifically for this project.
+All salon descriptions, product descriptions and written website content were created specifically for Glow Space.
 
 ### Images
 
-Product and service images were created, edited or sourced from royalty-free platforms such as Unsplash, where applicable.
+Images used for services, products and page presentation were created, edited or sourced from royalty-free image platforms where applicable.
+
+The salon image in the booking session and some images in the services section were sourced from unsplash.
+
+### Libraries and Documentation
+
+The following documentation and libraries supported the development of the project:
+
+- Django documentation for models, views, templates, authentication, messages and deployment configuration.
+- Stripe documentation for Checkout integration and test payments.
+- Swiper.js documentation for the responsive services carousel.
+- Font Awesome for navigation and social-media icons.
+- Render documentation for web-service and PostgreSQL deployment.
+- WhiteNoise documentation for serving static files.
 
 ### Code
 
-The project was developed using Django and follows the structure and best practices taught throughout the Code Institute Full Stack Software Development Diploma.
-
-Official documentation from Django, Bootstrap, Stripe and Swiper.js was consulted during development to better understand implementation details and recommended practices.
-
-Any external guidance was used for learning purposes only. All code was written, adapted and integrated specifically for this project.
+All custom project code was written and adapted specifically for Glow Space. External libraries are loaded separately and are identified in the project documentation and source files.
 
 
 ## Acknowledgements
